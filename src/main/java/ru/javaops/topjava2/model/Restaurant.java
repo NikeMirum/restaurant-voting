@@ -17,9 +17,9 @@ import java.util.List;
 public class Restaurant extends NamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OrderBy("dateTime DESC")
+    @OrderBy("price DESC")
     @JsonManagedReference
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Menu> menus;
+    private List<Dish> dishes;
 
 }
