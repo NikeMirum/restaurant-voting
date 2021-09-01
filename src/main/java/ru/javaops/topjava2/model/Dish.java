@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,9 +17,9 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true, exclude = {"restaurant"})
 public class Dish extends NamedEntity {
 
-    @Column(name = "date_time", nullable = false)
+    @Column(name = "date", nullable = false)
     @NotNull
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
     @Column(name = "price", nullable = false)
     @NotNull
