@@ -16,7 +16,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Restaurant extends NamedEntity {
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("price DESC")
     @JsonManagedReference
     @OnDelete(action = OnDeleteAction.CASCADE)
