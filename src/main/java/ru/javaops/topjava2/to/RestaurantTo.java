@@ -17,4 +17,8 @@ public class RestaurantTo extends NamedTo implements HasId, Serializable {
 
     List<Dish> dishes;
 
+    public RestaurantTo(Integer id, String name, List<Dish> dishes) {
+        super(id, name);
+        this.dishes = dishes;
+    }
 }

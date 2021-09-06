@@ -23,7 +23,7 @@ public class RestaurantVotingApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println(LocalDate.now());
-        ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) restaurantRepository.getAllWithDish(LocalDate.now());
+        ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) restaurantRepository.getAllWithMenuByDate(LocalDate.now());
         for (Restaurant restaurant : restaurants) {
             System.out.println(restaurant);
         }

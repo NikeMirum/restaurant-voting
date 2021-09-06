@@ -19,4 +19,9 @@ public class RestaurantWithVotesTo extends NamedTo implements HasId, Serializabl
 
     Integer votesCount;
 
+    public RestaurantWithVotesTo(Integer id, String name, List<Dish> dishes, Integer votesCount) {
+        super(id, name);
+        this.dishes = dishes;
+        this.votesCount = votesCount;
+    }
 }
