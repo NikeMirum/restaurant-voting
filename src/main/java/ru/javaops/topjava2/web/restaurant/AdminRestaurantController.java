@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -29,7 +30,6 @@ public class AdminRestaurantController {
     static final String REST_URL = "/api/admin/restaurants";
 
     private final RestaurantRepository restaurantRepository;
-//    private final DishRepository dishRepository; - not ready yet
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -40,13 +40,15 @@ public class AdminRestaurantController {
     }
 
     @GetMapping
+    @CacheEvict(allEntries = true)
     public List<Restaurant> getAllRestaurantsWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         return restaurantRepository.getAllWithMenuByDate(LocalDate.now());
     }
 
     @GetMapping("/by-date")
-    public List<Restaurant> getAllRestaurantsWithMenuByDate(LocalDate date) {
+    @CacheEvict(allEntries = true)
+    public List<Restaurant> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable LocalDate date) {
         log.info("getAll for {}", date);
         return restaurantRepository.getAllWithMenuByDate(date);
     }

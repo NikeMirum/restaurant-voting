@@ -3,8 +3,10 @@ package ru.javaops.topjava2.web.restaurant;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.javaops.topjava2.model.Restaurant;
 import ru.javaops.topjava2.repository.RestaurantRepository;
@@ -36,7 +38,7 @@ public class ProfileRestaurantController {
     }
 
     @GetMapping("/by-date")
-    public List<RestaurantTo> getAllRestaurantsWithMenuByDate(LocalDate date) {
+    public List<RestaurantTo> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable LocalDate date) {
         log.info("getAll for {}", date);
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);
         return restaurants.stream()
