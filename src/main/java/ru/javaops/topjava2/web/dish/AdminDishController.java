@@ -26,7 +26,7 @@ import static ru.javaops.topjava2.util.validation.ValidationUtil.checkNew;
 @AllArgsConstructor
 public class AdminDishController {
 
-    static final String REST_URL = "/{restaurantId}/dishes";
+    static final String REST_URL = "/api/restaurants/{restaurantId}/dishes";
 
     private final DishRepository dishRepository;
     private final DishService dishService;
