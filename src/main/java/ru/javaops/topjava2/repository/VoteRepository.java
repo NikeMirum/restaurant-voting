@@ -18,7 +18,7 @@ public interface VoteRepository extends BaseRepository<Vote> {
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
     Optional<Vote> getByUserAndDate(int userId, LocalDate date);
 
-    @Query("SELECT v FROM Vote v WHERE v.user.id=:restaurantId AND v.date=:date")
+    @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restaurantId AND v.date=:date")
     List<Vote> getByRestaurantAndDate(int restaurantId, LocalDate date);
 
     default Vote checkBelong(int id, int userId) {
