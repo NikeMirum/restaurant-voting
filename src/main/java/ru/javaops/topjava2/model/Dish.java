@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dish")
@@ -31,4 +30,10 @@ public class Dish extends NamedEntity {
     @JsonBackReference
     private Restaurant restaurant;
 
+    public Dish(Integer id, String name, LocalDate date, Integer price, Restaurant restaurant) {
+        super(id, name);
+        this.date = date;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
 }

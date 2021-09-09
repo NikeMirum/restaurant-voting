@@ -24,4 +24,8 @@ public class Restaurant extends NamedEntity {
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled = true;
+
+    public Restaurant(Integer id, String name) {
+        super(id, name);
+    }
 }

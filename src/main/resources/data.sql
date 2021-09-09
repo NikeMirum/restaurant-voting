@@ -10,9 +10,7 @@ VALUES ('USER', 1),
 INSERT INTO RESTAURANT (name)
 VALUES ('McDonalds'),
        ('KFC'),
-       ('Burger King'),
-       ('Subway'),
-       ('Pizza Hut');
+       ('Burger King');
 
 INSERT INTO DISH (name, price, date, restaurant_id)
 VALUES ('Big Tasty', '249', CURRENT_DATE(), '1'),
@@ -24,13 +22,7 @@ VALUES ('Big Tasty', '249', CURRENT_DATE(), '1'),
        ('Whopper', '189', CURRENT_DATE(), '3'),
        ('9 Onion Rings', '129', CURRENT_DATE(), '3'),
        ('Diet Coke M', '119', CURRENT_DATE(), '3'),
-       ('Sandwich', '299', CURRENT_DATE(), '4'),
-       ('Cookie', '99', CURRENT_DATE(), '4'),
-       ('Fuze tea', '99', CURRENT_DATE(), '4'),
-       ('Pizza', '299', CURRENT_DATE(), '5'),
-       ('Nuggets', '99', CURRENT_DATE(), '5'),
-       ('Aqua Minerale', '89', CURRENT_DATE(), '5'),
-       ('Burger', '301', '2021-09-01', '1'),
+       ('BigMac', '301', '2021-09-01', '1'),
        ('Fries', '201', '2021-09-01', '1'),
        ('Cola', '101', '2021-09-01', '1'),
        ('Twister', '302', '2021-09-01', '2'),
@@ -38,13 +30,7 @@ VALUES ('Big Tasty', '249', CURRENT_DATE(), '1'),
        ('Cola', '102', '2021-09-01', '2'),
        ('Wrapper', '303', '2021-09-01', '3'),
        ('Fries', '203', '2021-09-01', '3'),
-       ('Cola', '103', '2021-09-01', '3'),
-       ('Roll', '304', '2021-09-01', '4'),
-       ('Fries', '294', '2021-09-01', '4'),
-       ('Cola', '104', '2021-09-01', '4'),
-       ('Quesadilla', '305', '2021-09-01', '5'),
-       ('Fries', '205', '2021-09-01', '5'),
-       ('Cola', '105', '2021-09-01', '5');
+       ('Cola', '103', '2021-09-01', '3');
 
 INSERT INTO VOTE (date, restaurant_id, user_id)
 VALUES (CURRENT_DATE(), '1', '1'),

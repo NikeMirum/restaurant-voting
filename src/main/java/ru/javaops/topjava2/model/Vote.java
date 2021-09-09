@@ -8,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "vote")
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true)
-public class Vote extends BaseEntity{
+public class Vote extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -33,4 +32,11 @@ public class Vote extends BaseEntity{
     @Column(name = "date", nullable = false)
     @NotNull
     private LocalDate date;
+
+    public Vote(Integer id, User user, Restaurant restaurant, LocalDate date) {
+        super(id);
+        this.user = user;
+        this.restaurant = restaurant;
+        this.date = date;
+    }
 }
