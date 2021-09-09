@@ -9,7 +9,7 @@ import java.util.List;
 import static ru.javaops.topjava2.web.restaurant.RestaurantTestData.*;
 
 public class DishTestData {
-    public static final MatcherFactory.Matcher<Dish> MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "user");
+    public static final MatcherFactory.Matcher<Dish> MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "restaurant");
 
     public static final int DISH1_ID = 1;
     public static final LocalDate CURRENT_DATE = LocalDate.now();

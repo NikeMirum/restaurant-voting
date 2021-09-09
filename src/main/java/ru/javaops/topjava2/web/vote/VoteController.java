@@ -2,9 +2,11 @@ package ru.javaops.topjava2.web.vote;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,7 +34,8 @@ public class VoteController {
     private final VoteService voteService;
 
     @GetMapping
-    public ResponseEntity<Vote> getVoteByUserAndDate(@AuthenticationPrincipal AuthUser authUser, LocalDate date) {
+    public ResponseEntity<Vote> getVoteByUserAndDate(@AuthenticationPrincipal AuthUser authUser,
+                                                     @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.of(voteRepository.getByUserAndDate(authUser.id(), date));
     }
 

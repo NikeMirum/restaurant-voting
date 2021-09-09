@@ -12,8 +12,6 @@ public class RestaurantTestData {
     public static final Restaurant restaurant1 = new Restaurant(RESTAURANT1_ID, "McDonalds");
     public static final Restaurant restaurant2 = new Restaurant(RESTAURANT1_ID + 1, "KFC");
     public static final Restaurant restaurant3 = new Restaurant(RESTAURANT1_ID + 2, "Burger King");
-    public static final Restaurant restaurant4 = new Restaurant(RESTAURANT1_ID + 3, "Subway");
-    public static final Restaurant restaurant5 = new Restaurant(RESTAURANT1_ID + 4, "Pizza Hut");
 
     public static Restaurant getNew() {
         return new Restaurant(null, "New");

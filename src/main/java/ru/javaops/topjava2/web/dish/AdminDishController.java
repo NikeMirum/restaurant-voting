@@ -2,6 +2,7 @@ package ru.javaops.topjava2.web.dish;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,8 @@ public class AdminDishController {
     private final DishService dishService;
 
     @GetMapping("/by-date")
-    public List<Dish> getAllByRestaurantAndDate(@PathVariable int restaurantId, @RequestParam @Nullable LocalDate date) {
+    public List<Dish> getAllByRestaurantAndDate(@PathVariable int restaurantId,
+                                                @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for restaurant {} by date {}", restaurantId, date);
         return dishRepository.getAllByRestaurantAndDate(restaurantId, date);
     }
@@ -60,7 +62,7 @@ public class AdminDishController {
         Dish created = dishService.save(dish, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
+                .buildAndExpand(restaurantId, created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 }
