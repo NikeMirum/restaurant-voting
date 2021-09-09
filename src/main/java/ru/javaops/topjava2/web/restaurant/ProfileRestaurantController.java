@@ -12,6 +12,7 @@ import ru.javaops.topjava2.model.Restaurant;
 import ru.javaops.topjava2.repository.RestaurantRepository;
 import ru.javaops.topjava2.repository.VoteRepository;
 import ru.javaops.topjava2.to.RestaurantTo;
+import ru.javaops.topjava2.util.RestaurantUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,17 +33,13 @@ public class ProfileRestaurantController {
     public List<RestaurantTo> getAllRestaurantsWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(LocalDate.now());
-        return restaurants.stream()
-                .map(r -> new RestaurantTo(r.getId(), r.getName(), r.getDishes(), voteRepository.getByRestaurantAndDate(r.getId(), LocalDate.now()).size()))
-                .collect(Collectors.toList());
+        return RestaurantUtil.getTos(restaurants, voteRepository, LocalDate.now());
     }
 
     @GetMapping("/by-date")
     public List<RestaurantTo> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable LocalDate date) {
         log.info("getAll for {}", date);
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);
-        return restaurants.stream()
-                .map(r -> new RestaurantTo(r.getId(), r.getName(), r.getDishes(), voteRepository.getByRestaurantAndDate(r.getId(), date).size()))
-                .collect(Collectors.toList());
+        return RestaurantUtil.getTos(restaurants, voteRepository, date);
     }
 }
