@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.javaops.topjava2.model.Dish;
@@ -31,6 +32,12 @@ public class AdminDishController {
 
     private final DishRepository dishRepository;
     private final DishService dishService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Dish> get(@PathVariable int id, @PathVariable int restaurantId) {
+        log.info("get dish {} for restaurant {}", id, restaurantId);
+        return ResponseEntity.of(dishRepository.get(id, restaurantId));
+    }
 
     @GetMapping("/by-date")
     public List<Dish> getAllByRestaurantAndDate(@PathVariable int restaurantId,

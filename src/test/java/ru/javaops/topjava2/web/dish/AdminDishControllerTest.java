@@ -32,9 +32,18 @@ class AdminDishControllerTest extends AbstractControllerTest {
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
+    void get() throws Exception {
+        perform(MockMvcRequestBuilders.get(RESTAURANT1_REST_URL + DISH1_ID))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(MATCHER.contentJson(dish1));
+    }
+
+    @Test
+    @WithUserDetails(value = ADMIN_MAIL)
     void getAllByRestaurantAndDate() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL.replace("{restaurantId}", "1") +
-                "/by-date?date=" + CURRENT_DATE_PARAM))
+        perform(MockMvcRequestBuilders.get(RESTAURANT1_REST_URL + "by-date?date=" + CURRENT_DATE_PARAM))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

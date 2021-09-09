@@ -3,6 +3,8 @@ package ru.javaops.topjava2.web.restaurant;
 import ru.javaops.topjava2.model.Restaurant;
 import ru.javaops.topjava2.web.MatcherFactory;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class RestaurantTestData {
     public static final MatcherFactory.Matcher<Restaurant> MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class, "dishes");
 

@@ -3,6 +3,7 @@ package ru.javaops.topjava2.web.restaurant;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.javaops.topjava2.model.Dish;
 import ru.javaops.topjava2.model.Restaurant;
 import ru.javaops.topjava2.repository.RestaurantRepository;
 
@@ -31,6 +33,12 @@ public class AdminRestaurantController {
 
     private final RestaurantRepository restaurantRepository;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Restaurant> get(@PathVariable int id) {
+        log.info("get restaurant {}", id);
+        return ResponseEntity.of(restaurantRepository.get(id));
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "restaurants", allEntries = true)
@@ -40,22 +48,19 @@ public class AdminRestaurantController {
     }
 
     @GetMapping
-    @CacheEvict(allEntries = true)
     public List<Restaurant> getAllRestaurantsWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         return restaurantRepository.getAllWithMenuByDate(LocalDate.now());
     }
 
     @GetMapping("/by-date")
-    @CacheEvict(allEntries = true)
-    public List<Restaurant> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable LocalDate date) {
+    public List<Restaurant> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         return restaurantRepository.getAllWithMenuByDate(date);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @CacheEvict(allEntries = true)
     public void update(@Valid @RequestBody Restaurant restaurant, @PathVariable int id) {
         log.info("update {} with id={}", restaurant, id);
         assureIdConsistent(restaurant, id);
@@ -63,8 +68,7 @@ public class AdminRestaurantController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @CacheEvict(allEntries = true)
-    public ResponseEntity<Restaurant> create(@Valid @RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody Restaurant restaurant) {
         log.info("create {}", restaurant);
         checkNew(restaurant);
         Restaurant created = restaurantRepository.save(restaurant);
@@ -77,7 +81,6 @@ public class AdminRestaurantController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
-    @CacheEvict(allEntries = true)
     public void enable(@PathVariable int id, @RequestParam boolean enabled) {
         log.info(enabled ? "enable {}" : "disable {}", id);
         Restaurant restaurant = restaurantRepository.getById(id);
