@@ -20,7 +20,8 @@ public class Vote extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+//    https://stackoverflow.com/questions/20119142/jackson-multiple-back-reference-properties-with-name-defaultreference#comment75246822_20271621
+    @JsonBackReference(value = "user-vote")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
