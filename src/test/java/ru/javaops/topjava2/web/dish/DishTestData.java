@@ -38,6 +38,10 @@ public class DishTestData {
             dish10, dish9, dish8, dish7, dish6, dish5, dish4, dish3, dish2, dish1);
     public static final List<Dish> todaysDishes = List.of(dish9, dish8, dish7, dish6, dish5, dish4, dish3, dish2, dish1);
 
+    public static final List<Dish> restaurant1CurrentDate = List.of(dish1, dish2, dish3);
+    public static final List<Dish> restaurant2CurrentDate = List.of(dish4, dish5, dish6);
+    public static final List<Dish> restaurant3CurrentDate = List.of(dish7, dish8, dish9);
+
     public static Dish getNew() {
         return new Dish(null, "New", CURRENT_DATE, 300, restaurant1);
     }
