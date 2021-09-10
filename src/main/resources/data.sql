@@ -30,5 +30,6 @@ VALUES ('Big Tasty', '249', CURRENT_DATE(), '1'),
        ('Cola', '102', '2021-09-01', '2');
 
 INSERT INTO VOTE (date, restaurant_id, user_id)
-VALUES (CURRENT_DATE(), '1', '1'),
-       (CURRENT_DATE(), '1', '2');
+VALUES ('2021-09-01', '1', '1'),
+       ('2021-09-01', '1', '2'),
+       (CURRENT_DATE(), '1', '1');

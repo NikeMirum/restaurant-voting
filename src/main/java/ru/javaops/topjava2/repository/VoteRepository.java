@@ -23,6 +23,11 @@ public interface VoteRepository extends BaseRepository<Vote> {
 
     default Vote checkBelong(int id, int userId) {
         return getByVoteIdAndUser(id, userId).orElseThrow(
-                () -> new IllegalRequestDataException("Vote id=" + id + " doesn't belong to User id=" + userId));
+                () -> new IllegalRequestDataException("Vote id= " + id + " doesn't belong to User id=" + userId));
+    }
+
+    default Vote checkPreviousVote(int userId, LocalDate date){
+        return getByUserAndDate(userId, date).orElseThrow(
+                () -> new IllegalRequestDataException("User id= " + userId + " haven't made any vote at the day" + date));
     }
 }

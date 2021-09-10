@@ -45,11 +45,10 @@ public class VoteController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Vote> createWithLocation(@AuthenticationPrincipal AuthUser authUser, @Valid @RequestBody Vote vote) {
+    public ResponseEntity<Vote> createWithLocation(@AuthenticationPrincipal AuthUser authUser, @RequestParam int restaurantId) {
         int userId = authUser.id();
-        log.info("create {} for user {}", vote, userId);
-        checkNew(vote);
-        Vote created = voteService.save(vote, userId);
+        log.info("create vote of user {} for restaurant {}", userId, restaurantId);
+        Vote created = voteService.create(userId, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
@@ -58,11 +57,12 @@ public class VoteController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@AuthenticationPrincipal AuthUser authUser, @Valid @RequestBody Vote vote, @PathVariable int id) {
+    public void update(@AuthenticationPrincipal AuthUser authUser, @PathVariable int id, @RequestParam int restaurantId) {
         int userId = authUser.id();
-        log.info("update vote {} for user {}", vote, userId);
-        assureIdConsistent(vote, id);
+        log.info("update vote of user {} for restaurant {}", userId, restaurantId);
         voteRepository.checkBelong(id, userId);
-        voteService.update(vote, userId);
+        Vote updated = voteRepository.checkPreviousVote(userId, LocalDate.now());
+        assureIdConsistent(updated, id);
+        voteService.update(updated, restaurantId);
     }
 }
