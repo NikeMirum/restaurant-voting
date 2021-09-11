@@ -26,7 +26,6 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @Tag(name = "Profile Restaurant Controller")
-@CacheConfig(cacheNames = "restaurantTos")
 public class ProfileRestaurantController {
 
     static final String REST_URL = "/api/restaurants";
@@ -35,7 +34,6 @@ public class ProfileRestaurantController {
     private final VoteRepository voteRepository;
 
     @GetMapping
-    @Cacheable
     public List<RestaurantTo> getAllWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(LocalDate.now());
@@ -43,7 +41,6 @@ public class ProfileRestaurantController {
     }
 
     @GetMapping("/by-date")
-    @Cacheable
     public List<RestaurantTo> getAllWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);
