@@ -3,6 +3,8 @@ package ru.javaops.topjava23.web.restaurant;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
@@ -24,6 +26,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @Tag(name = "Profile Restaurant Controller")
+@CacheConfig(cacheNames = "restaurantTos")
 public class ProfileRestaurantController {
 
     static final String REST_URL = "/api/restaurants";
@@ -32,14 +35,16 @@ public class ProfileRestaurantController {
     private final VoteRepository voteRepository;
 
     @GetMapping
-    public List<RestaurantTo> getAllRestaurantsWithTodaysMenu() {
+    @Cacheable
+    public List<RestaurantTo> getAllWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(LocalDate.now());
         return RestaurantUtil.getTos(restaurants, voteRepository, LocalDate.now());
     }
 
     @GetMapping("/by-date")
-    public List<RestaurantTo> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    @Cacheable
+    public List<RestaurantTo> getAllWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);
         return RestaurantUtil.getTos(restaurants, voteRepository, date);

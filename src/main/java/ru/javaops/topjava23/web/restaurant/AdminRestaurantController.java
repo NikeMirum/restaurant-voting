@@ -49,13 +49,13 @@ public class AdminRestaurantController {
     }
 
     @GetMapping
-    public List<Restaurant> getAllRestaurantsWithTodaysMenu() {
+    public List<Restaurant> getAllWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
         return restaurantRepository.getAllWithMenuByDate(LocalDate.now());
     }
 
     @GetMapping("/by-date")
-    public List<Restaurant> getAllRestaurantsWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public List<Restaurant> getAllWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         return restaurantRepository.getAllWithMenuByDate(date);
     }

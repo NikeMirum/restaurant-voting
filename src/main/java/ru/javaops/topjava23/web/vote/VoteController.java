@@ -34,13 +34,13 @@ public class VoteController {
     private final VoteService voteService;
 
     @GetMapping
-    public ResponseEntity<Vote> getVoteByUserToday(@AuthenticationPrincipal AuthUser authUser) {
+    public ResponseEntity<Vote> getByUserToday(@AuthenticationPrincipal AuthUser authUser) {
         return ResponseEntity.of(voteRepository.getByUserAndDate(authUser.id(), LocalDate.now()));
     }
 
     @GetMapping("/by-date")
-    public ResponseEntity<Vote> getVoteByUserAndDate(@AuthenticationPrincipal AuthUser authUser,
-                                                     @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public ResponseEntity<Vote> getByUserAndDate(@AuthenticationPrincipal AuthUser authUser,
+                                                 @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.of(voteRepository.getByUserAndDate(authUser.id(), date));
     }
 
