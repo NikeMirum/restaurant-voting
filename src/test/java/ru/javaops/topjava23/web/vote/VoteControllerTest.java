@@ -66,7 +66,7 @@ class VoteControllerTest extends AbstractControllerTest {
     @WithUserDetails(value = USER_MAIL)
     void update() throws Exception {
         Vote updated = getUpdated();
-        perform(MockMvcRequestBuilders.put(REST_URL + VOTE3_ID + "?restaurantId=" + RESTAURANT1_ID)
+        perform(MockMvcRequestBuilders.put(REST_URL + "?restaurantId=" + RESTAURANT1_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isNoContent());

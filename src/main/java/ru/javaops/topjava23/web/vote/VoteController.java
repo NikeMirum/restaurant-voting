@@ -19,8 +19,6 @@ import ru.javaops.topjava23.web.AuthUser;
 import java.net.URI;
 import java.time.LocalDate;
 
-import static ru.javaops.topjava23.util.validation.ValidationUtil.assureIdConsistent;
-
 @RestController
 @RequestMapping(value = VoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
@@ -56,14 +54,12 @@ public class VoteController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@AuthenticationPrincipal AuthUser authUser, @PathVariable int id, @RequestParam int restaurantId) {
+    public void update(@AuthenticationPrincipal AuthUser authUser, @RequestParam int restaurantId) {
         int userId = authUser.id();
         log.info("update vote of user {} for restaurant {}", userId, restaurantId);
-        voteRepository.checkBelong(id, userId);
         Vote updated = voteRepository.checkPreviousVote(userId, LocalDate.now());
-        assureIdConsistent(updated, id);
         voteService.update(updated, restaurantId);
     }
 }
