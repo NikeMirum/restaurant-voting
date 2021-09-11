@@ -1,17 +1,39 @@
-[Проект TopJava-2](https://javaops.ru/view/topjava2)
+[Graduation TopJava-23 project](https://javaops.ru/view/topjava2)
 ===============================
 
-#### Разбор решения [выпускного проекта TopJava](https://github.com/JavaOPs/topjava/blob/master/graduation.md)
-- Spring Boot 2.5, Lombok, H2, Swagger/OpenAPI 3.0, Caffeine Cache
-- Исходный код взят из миграции TopJava на Spring Boot (без еды)
-- На основе этого репозитория на курсе будет выполняться выпускной проект "Голосование за рестораны"
+#### Graduation project [task](https://github.com/JavaOPs/topjava/blob/master/graduation.md) is to build a voting system for deciding where to have lunch:
+- 2 types of users: admin and regular users
+- Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a dish name and price)
+- Menu changes each day (admins do the updates)
+- Users can vote on which restaurant they want to have lunch at
+- Only one vote counted per user
+- If user votes again the same day:
+- If it is before 11:00 we assume that he changed his mind.
+- If it is after 11:00 then it is too late, vote can't be changed
+- Each restaurant provides a new menu each day.
 
-#### Рефакторинг кода TopJava:
-- в нашем приложении теперь только REST контроллеры, не надо добавлять `Rest` в имя
-- заменил префикс `/rest` в URLs на `/api` 
-- каждый контроллер занимается своими CRUD, переименовал `Admin[Rest]Controller` в `AdminUserController`
-- исключил `AppConfig.h2Server` из тестов, он там не нужен
-- удалил проверки `ValidationUtil.checkNotFound`. Есть готовый метод `JpaRepository.getById`, который бросает `EntityNotFoundException`. 
-Добавил его обработку в `GlobalExceptionHandler`.
-- сделал общий метод `BaseRepository.deleteExisted`
-- TODO: кэшируйте только наиболее часто запрашиваемые данные
+#### API documentation performed by Swagger:
+- http://localhost:8080/swagger-ui.html
+- http://localhost:8080/v3/api-docs
+
+#### How it works:
+When the authorisation is done (it is build by Spring Security) depending on user permissions,
+Admin (login:admin@gmail.com, pass:admin) and User (login:user@yandex.ru, pass:password) are having the following rights: 
+
+#### Admin:
+- Can manage users at AdminUserController (/api/admin/users)
+- Can input restaurants by AdminRestaurantController (/api/admin/restaurants)
+- Can input daily menu by AdminDishController per each restaurant (/api/restaurants/{restaurantId}/dishes)
+by adding and editing dishes
+
+#### Admin and User:
+- Can go into /api/restaurants, in which RestaurantTo objects, based by Restaurant objects with vote counts field 
+can be received, controlled by ProfileAdminRestaurantController
+- By VoteController Depending on GET query getVoteByUserToday() response, the vote, if user hasn't vot today yet,
+  (VoteService#isVoteTodayAlreadyDone() = false) or re-vote(if it is not later than VOTING_TIME_DEADLINE) can be done.
+
+#### Notes:
+- For one of 43 tests passing in VoteService VOTING_TIME_DEADLINE constant should be more than current hour
+or at least it should be tested earlier than 11am.
+- Some methods in controllers are performed not only for current day but also for different day
+just for the case if in future there would be necessity to upload menu for the future, see the history of even vote
