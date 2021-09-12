@@ -1,4 +1,6 @@
-[Graduation TopJava-23 project](https://javaops.ru/view/topjava2)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/487c3e0b18af4e85869a333de12d627b)](https://www.codacy.com/gh/NikeMirum/restaurant-voting/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NikeMirum/restaurant-voting&amp;utm_campaign=Badge_Grade) 
+
+[Graduation TopJava-23 project](https://javaops.ru/7view/topjava2)
 ===============================
 
 #### Graduation project [task](https://github.com/JavaOPs/topjava/blob/master/graduation.md) is to build a voting system for deciding where to have lunch:
