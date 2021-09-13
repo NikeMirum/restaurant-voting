@@ -18,7 +18,7 @@ public class VoteService {
     private final UserRepository userRepository;
     private final RestaurantRepository restaurantRepository;
 
-    private final LocalTime VOTING_TIME_DEADLINE = LocalTime.of(23, 0);
+    private final LocalTime VOTING_TIME_DEADLINE = LocalTime.of(11, 0);
 
     public Vote create(int userId, int restaurantId) {
         if (!isVoteTodayAlreadyDone(userId)) {
