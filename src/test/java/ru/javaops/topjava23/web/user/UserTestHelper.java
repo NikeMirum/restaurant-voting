@@ -8,7 +8,7 @@ import ru.javaops.topjava23.web.MatcherFactory;
 import java.util.Collections;
 import java.util.Date;
 
-public class UserTestData {
+public class UserTestHelper {
     public static final MatcherFactory.Matcher<User> MATCHER = MatcherFactory.usingIgnoringFieldsComparator(User.class, "registered", "password");
 
     public static final int USER_ID = 1;

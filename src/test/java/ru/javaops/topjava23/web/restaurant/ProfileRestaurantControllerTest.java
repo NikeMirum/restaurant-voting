@@ -11,8 +11,8 @@ import ru.javaops.topjava23.web.AbstractControllerTest;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.javaops.topjava23.web.restaurant.RestaurantTestData.*;
-import static ru.javaops.topjava23.web.user.UserTestData.USER_MAIL;
+import static ru.javaops.topjava23.web.restaurant.RestaurantTestHelper.*;
+import static ru.javaops.topjava23.web.user.UserTestHelper.USER_MAIL;
 
 class ProfileRestaurantControllerTest extends AbstractControllerTest {
 

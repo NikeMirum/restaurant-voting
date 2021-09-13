@@ -4,9 +4,9 @@ import ru.javaops.topjava23.model.Restaurant;
 import ru.javaops.topjava23.to.RestaurantTo;
 import ru.javaops.topjava23.web.MatcherFactory;
 
-import static ru.javaops.topjava23.web.dish.DishTestData.*;
+import static ru.javaops.topjava23.web.dish.DishTestHelper.*;
 
-public class RestaurantTestData {
+public class RestaurantTestHelper {
     public static final MatcherFactory.Matcher<Restaurant> MATCHER = MatcherFactory.
             usingIgnoringFieldsComparator(Restaurant.class, "dishes");
     public static final MatcherFactory.Matcher<Restaurant> WITH_DISHES_MATCHER = MatcherFactory.usingEqualsComparator(Restaurant.class);

@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.javaops.topjava23.web.user.ProfileController.REST_URL;
-import static ru.javaops.topjava23.web.user.UserTestData.*;
+import static ru.javaops.topjava23.web.user.UserTestHelper.*;
 
 class ProfileControllerTest extends AbstractControllerTest {
 

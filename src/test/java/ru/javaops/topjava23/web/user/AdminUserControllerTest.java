@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.javaops.topjava23.web.user.UserTestData.*;
+import static ru.javaops.topjava23.web.user.UserTestHelper.*;
 
 class AdminUserControllerTest extends AbstractControllerTest {
 

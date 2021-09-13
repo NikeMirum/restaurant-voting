@@ -5,12 +5,12 @@ import ru.javaops.topjava23.web.MatcherFactory;
 
 import java.time.LocalDate;
 
-import static ru.javaops.topjava23.web.restaurant.RestaurantTestData.restaurant1;
-import static ru.javaops.topjava23.web.restaurant.RestaurantTestData.restaurant2;
-import static ru.javaops.topjava23.web.user.UserTestData.admin;
-import static ru.javaops.topjava23.web.user.UserTestData.user;
+import static ru.javaops.topjava23.web.restaurant.RestaurantTestHelper.restaurant1;
+import static ru.javaops.topjava23.web.restaurant.RestaurantTestHelper.restaurant2;
+import static ru.javaops.topjava23.web.user.UserTestHelper.admin;
+import static ru.javaops.topjava23.web.user.UserTestHelper.user;
 
-public class VoteTestData {
+public class VoteTestHelper {
     public static final MatcherFactory.Matcher<Vote> MATCHER = MatcherFactory
             .usingIgnoringFieldsComparator(Vote.class, "restaurant", "user", "date");
 

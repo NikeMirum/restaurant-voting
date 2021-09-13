@@ -6,9 +6,9 @@ import ru.javaops.topjava23.web.MatcherFactory;
 import java.time.LocalDate;
 import java.util.List;
 
-import static ru.javaops.topjava23.web.restaurant.RestaurantTestData.*;
+import static ru.javaops.topjava23.web.restaurant.RestaurantTestHelper.*;
 
-public class DishTestData {
+public class DishTestHelper {
     public static final MatcherFactory.Matcher<Dish> MATCHER = MatcherFactory
             .usingIgnoringFieldsComparator(Dish.class, "restaurant");
 

@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.javaops.topjava23.web.dish.DishTestData.*;
-import static ru.javaops.topjava23.web.restaurant.RestaurantTestData.RESTAURANT1_ID;
-import static ru.javaops.topjava23.web.user.UserTestData.ADMIN_MAIL;
+import static ru.javaops.topjava23.web.dish.DishTestHelper.*;
+import static ru.javaops.topjava23.web.restaurant.RestaurantTestHelper.RESTAURANT1_ID;
+import static ru.javaops.topjava23.web.user.UserTestHelper.ADMIN_MAIL;
 
 class AdminDishControllerTest extends AbstractControllerTest {
 
