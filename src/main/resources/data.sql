@@ -14,11 +14,11 @@ VALUES ('McDonalds'),
 
 INSERT INTO DISH (name, price, date, restaurant_id)
 VALUES ('Big Tasty', '249', CURRENT_DATE, '1'),
-       ('Nuggets', '67', CURRENT_DATE, '1'),
+       ('Nuggets', '69', CURRENT_DATE, '1'),
        ('Sprite M', '75', CURRENT_DATE, '1'),
        ('Boxmaster', '199', CURRENT_DATE, '2'),
        ('6 Stripes', '214', CURRENT_DATE, '2'),
-       ('Pepsi M', '249', CURRENT_DATE, '2'),
+       ('Pepsi M', '79', CURRENT_DATE, '2'),
        ('Whopper', '189', CURRENT_DATE, '3'),
        ('9 Onion Rings', '129', CURRENT_DATE, '3'),
        ('Diet Coke M', '119', CURRENT_DATE, '3'),
