@@ -19,9 +19,6 @@ class ProfileRestaurantControllerTest extends AbstractControllerTest {
     private static final String REST_URL = ProfileRestaurantController.REST_URL + "/";
     private static final String OLD_DATE_PARAM = "2021-09-01";
 
-    @Autowired
-    private RestaurantRepository restaurantRepository;
-
     @Test
     @WithUserDetails(value = USER_MAIL)
     void getAllRestaurantsWithTodaysMenu() throws Exception {
