@@ -4,7 +4,6 @@ import ru.javaops.topjava23.model.Restaurant;
 import ru.javaops.topjava23.to.RestaurantTo;
 import ru.javaops.topjava23.web.MatcherFactory;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static ru.javaops.topjava23.web.dish.DishTestData.*;
 
 public class RestaurantTestData {
