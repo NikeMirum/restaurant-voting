@@ -1,4 +1,5 @@
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/487c3e0b18af4e85869a333de12d627b)](https://www.codacy.com/gh/NikeMirum/restaurant-voting/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NikeMirum/restaurant-voting&amp;utm_campaign=Badge_Grade) 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/487c3e0b18af4e85869a333de12d627b)](https://www.codacy.com/gh/NikeMirum/restaurant-voting/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NikeMirum/restaurant-voting&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.com/NikeMirum/restaurant-voting.svg?branch=master)
 
 [Graduation TopJava-23 project](https://javaops.ru/7view/topjava2)
 ===============================
