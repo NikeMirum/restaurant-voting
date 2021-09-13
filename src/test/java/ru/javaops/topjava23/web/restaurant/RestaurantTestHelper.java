@@ -13,7 +13,6 @@ public class RestaurantTestHelper {
     public static final MatcherFactory.Matcher<RestaurantTo> TO_MATCHER = MatcherFactory.usingEqualsComparator(RestaurantTo.class);
 
     public static final int RESTAURANT1_ID = 1;
-    public static final int NOT_FOUND = 100;
 
     public static final Restaurant restaurant1 = new Restaurant(RESTAURANT1_ID, "McDonalds");
     public static final Restaurant restaurant2 = new Restaurant(RESTAURANT1_ID + 1, "KFC");
