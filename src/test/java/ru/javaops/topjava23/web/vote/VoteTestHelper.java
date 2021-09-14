@@ -17,6 +17,7 @@ public class VoteTestHelper {
     public static final int VOTE1_ID = 1;
     public static final int VOTE2_ID = 2;
     public static final int VOTE3_ID = 3;
+    public static final int VOTE4_ID = 4;
     public static final LocalDate CURRENT_DATE = LocalDate.now();
     public static final LocalDate OLD_DATE = LocalDate.of(2021, 9, 1);
 
@@ -25,7 +26,7 @@ public class VoteTestHelper {
     public static final Vote vote3 = new Vote(VOTE3_ID, user, restaurant1, CURRENT_DATE);
 
     public static Vote getNew() {
-        return new Vote(null, admin, restaurant2, CURRENT_DATE);
+        return new Vote(VOTE4_ID, admin, restaurant2, CURRENT_DATE);
     }
 
     public static Vote getUpdated() {

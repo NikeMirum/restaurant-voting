@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.javaops.topjava23.model.Vote;
 import ru.javaops.topjava23.repository.VoteRepository;
+import ru.javaops.topjava23.util.ClockUtil;
 import ru.javaops.topjava23.util.JsonUtil;
 import ru.javaops.topjava23.web.AbstractControllerTest;
 
@@ -49,27 +49,25 @@ class VoteControllerTest extends AbstractControllerTest {
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
-    void createWithLocation() throws Exception {
+    void create() throws Exception {
         Vote newVote = getNew();
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "?restaurantId=" + RESTAURANT1_ID)
+        perform(MockMvcRequestBuilders.post(REST_URL + "?restaurantId=" + RESTAURANT1_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newVote)))
                 .andExpect(status().isCreated());
-        Vote created = MATCHER.readFromJson(action);
-        int newId = created.id();
-        newVote.setId(newId);
-        MATCHER.assertMatch(created, newVote);
-        MATCHER.assertMatch(voteRepository.getById(newId), newVote);
+        MATCHER.assertMatch(voteRepository.getById(VOTE4_ID), newVote);
     }
 
     @Test
     @WithUserDetails(value = USER_MAIL)
     void update() throws Exception {
         Vote updated = getUpdated();
+        ClockUtil.useMockClock();
         perform(MockMvcRequestBuilders.put(REST_URL + "?restaurantId=" + RESTAURANT1_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isNoContent());
         MATCHER.assertMatch(voteRepository.getById(VOTE3_ID), updated);
+        ClockUtil.useDefaultClock();
     }
 }
