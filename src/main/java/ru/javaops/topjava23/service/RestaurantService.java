@@ -18,12 +18,6 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final VoteRepository voteRepository;
 
-    public List<RestaurantTo> getAllWithTodaysMenu() {
-        List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(LocalDate.now());
-        List<Vote> votes = voteRepository.getByDate(LocalDate.now());
-        return RestaurantUtil.getTos(restaurants, votes);
-    }
-
     public List<RestaurantTo> getAllWithMenuByDate(LocalDate date) {
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);
         List<Vote> votes = voteRepository.getByDate(date);

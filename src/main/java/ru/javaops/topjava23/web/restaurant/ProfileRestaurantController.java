@@ -30,7 +30,7 @@ public class ProfileRestaurantController {
     @GetMapping
     public List<RestaurantTo> getAllWithTodaysMenu() {
         log.info("getAll for {}", LocalDate.now());
-        return restaurantService.getAllWithTodaysMenu();
+        return restaurantService.getAllWithMenuByDate(LocalDate.now());
     }
 
     @GetMapping("/by")

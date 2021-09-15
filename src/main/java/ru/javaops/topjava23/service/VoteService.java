@@ -2,6 +2,7 @@ package ru.javaops.topjava23.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.javaops.topjava23.error.IllegalRequestDataException;
 import ru.javaops.topjava23.model.Vote;
 import ru.javaops.topjava23.repository.RestaurantRepository;
@@ -30,6 +31,7 @@ public class VoteService {
                 "so the re-vote should be performed instead of new vote creation");
     }
 
+    @Transactional
     public void update(int userId, int restaurantId) {
         if (LocalTime.now(ClockUtil.clock).isBefore(votingTimeDeadline)) {
             Vote updated = voteRepository.checkPreviousVote(userId, LocalDate.now());
