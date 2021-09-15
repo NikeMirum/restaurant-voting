@@ -33,9 +33,9 @@ public class VoteService {
 
     @Transactional
     public void update(int userId, int restaurantId) {
+        Vote updated = voteRepository.getByUserAndDate(userId, LocalDate.now()).orElseThrow(
+                () -> new IllegalRequestDataException("User id = " + userId + " hasn't made any vote today"));
         if (LocalTime.now(ClockUtil.clock).isBefore(votingTimeDeadline)) {
-            Vote updated = voteRepository.getByUserAndDate(userId, LocalDate.now()).orElseThrow(
-                            () -> new IllegalRequestDataException("User id = " + userId + " hasn't made any vote today"));
             updated.setRestaurant(restaurantRepository.getById(restaurantId));
             voteRepository.save(updated);
         } else throw new IllegalRequestDataException("User " + userId + " already voted today" +
