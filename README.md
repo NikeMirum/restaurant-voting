@@ -16,25 +16,6 @@
     - If it is after 11:00 then it is too late, vote can't be changed
 * Each restaurant provides a new menu each day.
 
-### How it works
-
-When the authorisation is done (see authorisation data below) depending on permissions, given by roles, ADMIN and USER
-are having the following rights
-
-#### ADMIN:
-
-- Can manage users at AdminUserController (/api/admin/users)
-- Can input restaurants by AdminRestaurantController (/api/admin/restaurants)
-- Can input daily menu by AdminDishController per each restaurant (/api/restaurants/{restaurantId}/dishes)
-  by adding and editing dishes
-
-#### ADMIN and USER:
-
-- Can go into /api/restaurants, in which RestaurantTo objects, based by Restaurant objects with vote counts field can be
-  received, controlled by ProfileAdminRestaurantController
-- By VoteController Depending on GET query getVoteByUserToday() response, the vote, if user hasn't vot today yet,
-  (VoteService#isVoteTodayAlreadyDone() = false) or re-vote(if it is not later than VOTING_TIME_DEADLINE) can be done.
-
 ### API documentation performed by Swagger
 
 - http://localhost:8080/swagger-ui.html
@@ -44,10 +25,3 @@ are having the following rights
 
 - **Admin**  login: admin@gmail.com, pass: admin
 - **User**  login: user@yandex.ru, pass: password
-
-### Notes
-
-- For one of 43 tests passing in VoteService VOTING_TIME_DEADLINE constant should be more than current hour or at least
-  it should be tested earlier than 11am.
-- Some methods in controllers are performed not only for current day but also for different day just for the case if in
-  future there would be necessity to upload menu for the future, see the history of even vote
