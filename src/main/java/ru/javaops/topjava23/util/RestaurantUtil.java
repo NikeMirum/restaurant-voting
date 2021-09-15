@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class RestaurantUtil {
     public static List<RestaurantTo> getTos(Collection<Restaurant> restaurants, List<Vote> votes) {
-        return restaurants.stream().map(r -> createTo(r, votes)).collect(Collectors.toList());
+        return restaurants.stream().filter(Restaurant::isEnabled).map(r -> createTo(r, votes)).collect(Collectors.toList());
     }
 
     public static RestaurantTo createTo(Restaurant restaurant, List<Vote> votes) {
