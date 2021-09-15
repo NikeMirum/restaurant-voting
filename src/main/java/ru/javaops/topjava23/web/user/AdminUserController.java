@@ -44,7 +44,6 @@ public class AdminUserController extends AbstractUserController {
     }
 
     @GetMapping
-    @Cacheable
     public List<User> getAll() {
         log.info("getAll");
         return repository.findAll(Sort.by(Sort.Direction.ASC, "name", "email"));

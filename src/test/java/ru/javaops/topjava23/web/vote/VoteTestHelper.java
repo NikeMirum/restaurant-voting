@@ -12,7 +12,7 @@ import static ru.javaops.topjava23.web.user.UserTestHelper.user;
 
 public class VoteTestHelper {
     public static final MatcherFactory.Matcher<Vote> MATCHER = MatcherFactory
-            .usingIgnoringFieldsComparator(Vote.class, "restaurant", "user", "date");
+            .usingIgnoringFieldsComparator(Vote.class, "restaurant", "user");
 
     public static final int VOTE1_ID = 1;
     public static final int VOTE2_ID = 2;

@@ -3,7 +3,6 @@ package ru.javaops.topjava23.web.restaurant;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,7 +41,6 @@ public class AdminRestaurantController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @CacheEvict(value = "restaurants", allEntries = true)
     public void delete(@PathVariable int id) {
         log.info("delete {}", id);
         restaurantRepository.deleteExisted(id);
