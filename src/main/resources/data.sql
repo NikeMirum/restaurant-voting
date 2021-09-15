@@ -12,7 +12,7 @@ VALUES ('McDonalds'),
        ('KFC'),
        ('Burger King');
 
-INSERT INTO DISH (name, price, date, restaurant_id)
+INSERT INTO DISH (name, price, date_entry, restaurant_id)
 VALUES ('Big Tasty', '249', CURRENT_DATE, '1'),
        ('Nuggets', '69', CURRENT_DATE, '1'),
        ('Sprite M', '75', CURRENT_DATE, '1'),
@@ -29,7 +29,7 @@ VALUES ('Big Tasty', '249', CURRENT_DATE, '1'),
        ('Fries', '202', '2021-09-01', '2'),
        ('Cola', '102', '2021-09-01', '2');
 
-INSERT INTO VOTE (date, restaurant_id, user_id)
+INSERT INTO VOTE (date_entry, restaurant_id, user_id)
 VALUES ('2021-09-01', '1', '1'),
        ('2021-09-01', '1', '2'),
        (CURRENT_DATE, '1', '1');

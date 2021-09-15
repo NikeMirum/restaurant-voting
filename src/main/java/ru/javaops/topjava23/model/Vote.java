@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "UniqueUserAndDate", columnNames = {"user_id", "date"})})
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "UniqueUserAndDate", columnNames = {"user_id", "date_entry"})})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,7 +30,7 @@ public class Vote extends BaseEntity {
     @JsonBackReference
     private Restaurant restaurant;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date_entry", nullable = false)
     @NotNull
     private LocalDate date;
 

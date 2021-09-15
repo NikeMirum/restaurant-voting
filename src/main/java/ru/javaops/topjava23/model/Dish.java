@@ -9,20 +9,19 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "dish", uniqueConstraints = {@UniqueConstraint(name = "UniqueDishInMenu", columnNames = {"name", "date", "restaurant_id"})})
+@Table(name = "dish", uniqueConstraints = {@UniqueConstraint(name = "UniqueDishInMenu", columnNames = {"name", "date_entry", "restaurant_id"})})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true, exclude = {"restaurant"})
 public class Dish extends NamedEntity {
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date_entry", nullable = false)
     @NotNull
     private LocalDate date;
 
     @Column(name = "price", nullable = false)
     @NotNull
-    @Range(min = 1, max = 5000)
     private Integer price;
 
     @ManyToOne(fetch = FetchType.LAZY)
