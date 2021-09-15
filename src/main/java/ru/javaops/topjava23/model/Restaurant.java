@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = {"dishes"})
 public class Restaurant extends NamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")

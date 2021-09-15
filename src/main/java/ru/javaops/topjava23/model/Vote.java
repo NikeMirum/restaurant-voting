@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = {"user", "restaurant"})
 public class Vote extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
