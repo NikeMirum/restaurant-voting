@@ -40,7 +40,7 @@ public class AdminDishController {
         return ResponseEntity.of(dishRepository.get(id, restaurantId));
     }
 
-    @GetMapping("/by-date")
+    @GetMapping("/by")
     public List<Dish> getAllByRestaurantAndDate(@PathVariable int restaurantId,
                                                 @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for restaurant {} by date {}", restaurantId, date);

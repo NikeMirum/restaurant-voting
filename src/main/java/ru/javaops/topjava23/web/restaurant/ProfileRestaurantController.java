@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.javaops.topjava23.model.Restaurant;
 import ru.javaops.topjava23.repository.RestaurantRepository;
 import ru.javaops.topjava23.repository.VoteRepository;
@@ -38,7 +35,7 @@ public class ProfileRestaurantController {
         return RestaurantUtil.getTos(restaurants, voteRepository, LocalDate.now());
     }
 
-    @GetMapping("/by-date")
+    @GetMapping("/by")
     public List<RestaurantTo> getAllWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         List<Restaurant> restaurants = restaurantRepository.getAllWithMenuByDate(date);

@@ -43,7 +43,7 @@ class AdminDishControllerTest extends AbstractControllerTest {
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
     void getAllByRestaurantAndDate() throws Exception {
-        perform(MockMvcRequestBuilders.get(RESTAURANT1_REST_URL + "by-date?date=" + CURRENT_DATE_PARAM))
+        perform(MockMvcRequestBuilders.get(RESTAURANT1_REST_URL + "by?date=" + CURRENT_DATE_PARAM))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

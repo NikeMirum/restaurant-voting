@@ -32,7 +32,7 @@ class ProfileRestaurantControllerTest extends AbstractControllerTest {
     @Test
     @WithUserDetails(value = USER_MAIL)
     void getAllRestaurantsWithMenuByDate() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + "by-date?date=" + OLD_DATE_PARAM))
+        perform(MockMvcRequestBuilders.get(REST_URL + "by?date=" + OLD_DATE_PARAM))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

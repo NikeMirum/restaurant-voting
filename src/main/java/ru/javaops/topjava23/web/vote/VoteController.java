@@ -34,7 +34,7 @@ public class VoteController {
         return ResponseEntity.of(voteRepository.getByUserAndDate(authUser.id(), LocalDate.now()));
     }
 
-    @GetMapping("/by-date")
+    @GetMapping("/by")
     public ResponseEntity<Vote> getByUserAndDate(@AuthenticationPrincipal AuthUser authUser,
                                                  @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.of(voteRepository.getByUserAndDate(authUser.id(), date));

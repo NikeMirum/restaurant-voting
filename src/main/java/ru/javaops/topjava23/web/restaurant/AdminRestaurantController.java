@@ -54,7 +54,7 @@ public class AdminRestaurantController {
         return restaurantRepository.getAllWithMenuByDate(LocalDate.now());
     }
 
-    @GetMapping("/by-date")
+    @GetMapping("/by")
     public List<Restaurant> getAllWithMenuByDate(@RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("getAll for {}", date);
         return restaurantRepository.getAllWithMenuByDate(date);
